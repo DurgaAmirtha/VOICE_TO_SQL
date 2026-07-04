@@ -1,0 +1,24 @@
+{
+    "D:\\VOICE TO SQL\\database\\demo_business.db": [
+        {
+            "table_name": "customers",
+            "document": "TABLE: customers\nCOLUMNS:\n  - customer_id (INTEGER) (PRIMARY KEY)\n  - first_name (TEXT) (NOT NULL)\n  - last_name (TEXT) (NOT NULL)\n  - email (TEXT) (NOT NULL)\n  - city (TEXT) (NOT NULL)\n  - country (TEXT) (NOT NULL)\n  - created_at (TEXT) (NOT NULL)\nSAMPLE DATA:\n  Row 1: {'customer_id': 1, 'first_name': 'Patricia', 'last_name': 'Smith', 'email': 'patricia.smith1@example-business.com', 'city': 'Mumbai', 'country': 'India', 'created_at': '2024-05-20'}\n  Row 2: {'customer_id': 2, 'first_name': 'Linda', 'last_name': 'Davis', 'email': 'linda.davis2@example-business.com', 'city': 'Chicago', 'country': 'USA', 'created_at': '2025-01-12'}\n  Row 3: {'customer_id': 3, 'first_name': 'Patricia', 'last_name': 'Moore', 'email': 'patricia.moore3@example-business.com', 'city': 'San Francisco', 'country': 'USA', 'created_at': '2024-10-29'}"
+        },
+        {
+            "table_name": "employees",
+            "document": "TABLE: employees\nCOLUMNS:\n  - employee_id (INTEGER) (PRIMARY KEY)\n  - first_name (TEXT) (NOT NULL)\n  - last_name (TEXT) (NOT NULL)\n  - role (TEXT) (NOT NULL)\n  - department (TEXT) (NOT NULL)\n  - manager_id (INTEGER)\nRELATIONSHIPS:\n  - Column 'manager_id' references table 'employees' column 'employee_id'\nSAMPLE DATA:\n  Row 1: {'employee_id': 1, 'first_name': 'Sarah', 'last_name': 'Connor', 'role': 'VP Sales', 'department': 'Sales & Marketing', 'manager_id': None}\n  Row 2: {'employee_id': 2, 'first_name': 'John', 'last_name': 'Doe', 'role': 'Sales Manager', 'department': 'Sales', 'manager_id': 1}\n  Row 3: {'employee_id': 3, 'first_name': 'Alice', 'last_name': 'Smith', 'role': 'Sales Agent', 'department': 'Sales', 'manager_id': 2}"
+        },
+        {
+            "table_name": "products",
+            "document": "TABLE: products\nCOLUMNS:\n  - product_id (INTEGER) (PRIMARY KEY)\n  - product_name (TEXT) (NOT NULL)\n  - category (TEXT) (NOT NULL)\n  - price (REAL) (NOT NULL)\n  - cost (REAL) (NOT NULL)\n  - stock_quantity (INTEGER) (NOT NULL)\nSAMPLE DATA:\n  Row 1: {'product_id': 1, 'product_name': 'Enterprise Server S1', 'category': 'Electronics', 'price': 2499.99, 'cost': 1500.0, 'stock_quantity': 25}\n  Row 2: {'product_id': 2, 'product_name': 'Developer Laptop L2', 'category': 'Electronics', 'price': 1299.99, 'cost': 800.0, 'stock_quantity': 50}\n  Row 3: {'product_id': 3, 'product_name': 'Standard Office Desk', 'category': 'Furniture', 'price': 299.99, 'cost': 120.0, 'stock_quantity': 80}"
+        },
+        {
+            "table_name": "orders",
+            "document": "TABLE: orders\nCOLUMNS:\n  - order_id (INTEGER) (PRIMARY KEY)\n  - customer_id (INTEGER) (NOT NULL)\n  - employee_id (INTEGER)\n  - order_date (TEXT) (NOT NULL)\n  - total_amount (REAL) (NOT NULL)\nRELATIONSHIPS:\n  - Column 'employee_id' references table 'employees' column 'employee_id'\n  - Column 'customer_id' references table 'customers' column 'customer_id'\nSAMPLE DATA:\n  Row 1: {'order_id': 1, 'customer_id': 24, 'employee_id': 10, 'order_date': '2025-03-26', 'total_amount': 1834.91}\n  Row 2: {'order_id': 2, 'customer_id': 14, 'employee_id': 3, 'order_date': '2024-12-15', 'total_amount': 3717.86}\n  Row 3: {'order_id': 3, 'customer_id': 10, 'employee_id': 10, 'order_date': '2024-08-20', 'total_amount': 13577.83}"
+        },
+        {
+            "table_name": "sales",
+            "document": "TABLE: sales\nCOLUMNS:\n  - sale_id (INTEGER) (PRIMARY KEY)\n  - order_id (INTEGER) (NOT NULL)\n  - product_id (INTEGER) (NOT NULL)\n  - quantity (INTEGER) (NOT NULL)\n  - unit_price (REAL) (NOT NULL)\n  - discount (REAL) (NOT NULL)\n  - total_revenue (REAL) (NOT NULL)\nRELATIONSHIPS:\n  - Column 'product_id' references table 'products' column 'product_id'\n  - Column 'order_id' references table 'orders' column 'order_id'\nSAMPLE DATA:\n  Row 1: {'sale_id': 1, 'order_id': 1, 'product_id': 6, 'quantity': 4, 'unit_price': 89.99, 'discount': 0.0, 'total_revenue': 359.96}\n  Row 2: {'sale_id': 2, 'order_id': 1, 'product_id': 4, 'quantity': 1, 'unit_price': 199.99, 'discount': 0.0, 'total_revenue': 199.99}\n  Row 3: {'sale_id': 3, 'order_id': 1, 'product_id': 3, 'quantity': 2, 'unit_price': 299.99, 'discount': 0.15, 'total_revenue': 509.98}"
+        }
+    ]
+}

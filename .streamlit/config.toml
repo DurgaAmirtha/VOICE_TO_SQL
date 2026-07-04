@@ -1,0 +1,10 @@
+[server]
+fileWatcherType = "poll"
+folderWatchBlacklist = ["site-packages", "transformers", ".venv", "venv"]
+
+[theme]
+primaryColor = "#3B82F6"
+backgroundColor = "#0F0F11"
+secondaryBackgroundColor = "#18181B"
+textColor = "#E4E4E7"
+font = "sans serif"
