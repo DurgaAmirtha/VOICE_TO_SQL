@@ -86,9 +86,8 @@ with st.sidebar:
     db_mode = st.radio(
         "Select Database Source",
         options=["Built-in Demo Database", "Upload Custom Data"],
-        index=0 if st.session_state["db_mode"] == "Built-in Demo Database" else 1
+        key="db_mode"
     )
-    st.session_state["db_mode"] = db_mode
     old_db_path = st.session_state["db_path"]
     
     if db_mode == "Built-in Demo Database":
