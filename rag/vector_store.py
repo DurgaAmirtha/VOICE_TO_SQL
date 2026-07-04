@@ -8,7 +8,7 @@ from rag.schema_extractor import SchemaExtractor
 from utils.common import logger
 
 class HybridEmbeddingFunction(chromadb.EmbeddingFunction):
-    _local_failed = False
+    _local_failed = True # Set to True to disable local SentenceTransformer (saves ~450MB RAM, preventing Render free-tier memory crashes)
 
     def __init__(self):
         self.local_model = None
@@ -16,8 +16,17 @@ class HybridEmbeddingFunction(chromadb.EmbeddingFunction):
             logger.info("SentenceTransformer marked as failed. Bypassing local load.")
             return
 
-       logger.info("Skipping local SentenceTransformer. Using Gemini embeddings.")
-self.local_model = None
+        try:
+            logger.info("Attempting to load local SentenceTransformer: all-MiniLM-L6-v2")
+            from sentence_transformers import SentenceTransformer
+            self.local_model = SentenceTransformer(Config.EMBEDDING_MODEL_NAME)
+            logger.info("SentenceTransformer model loaded successfully.")
+        except Exception as e:
+            HybridEmbeddingFunction._local_failed = True
+            logger.warning(
+                f"Could not load local SentenceTransformer: {e}. "
+                "Vector store will fallback to Google Gemini Embeddings API."
+            )
 
     def __call__(self, input: chromadb.Documents) -> chromadb.Embeddings:
         # Try local model first
